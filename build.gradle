@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "io.freefair.lombok" version "6.5.0.2"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application{
+    mainClassName = 'org.example.Main'
+}
+
+ext{
+    helidonVersion = '2.5.1'
+}
+
+
+dependencies {
+
+    // import Helidon dependency management
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonVersion}")
+    //servidor
+    //implementation 'io.helidon.microprofile.bundles:helidon-microprofile'
+    //implementation 'io.helidon.microprofile.server:helidon-microprofile-server'
+    implementation group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server'
+
+
+}
+
+sourceSets {
+    main {
+        output.resourcesDir = file("${buildDir}/classes/java/main")
+    }
+}
